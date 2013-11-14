@@ -1,0 +1,23 @@
+{
+  "name": "simjs",
+  "version": "0.0.0",
+  "description": "Document similarity comparison in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/initrc/simjs.git"
+  },
+  "keywords": [
+    "text",
+    "similarity",
+    "comparison"
+  ],
+  "author": "David Shi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/initrc/simjs/issues"
+  }
+}
