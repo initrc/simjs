@@ -2,7 +2,7 @@
   "name": "simjs",
   "version": "0.0.0",
   "description": "Document similarity comparison in JavaScript",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,10 @@
     "url": "https://github.com/initrc/simjs/issues"
   },
   "dependencies": {
-    "express": "~3.4.4"
+    "express": "~3.4.4",
+    "consolidate": "~0.10.0",
+    "hogan.js": "~2.0.0",
+    "config": "~0.4.33",
+    "yaml": "~0.2.3"
   }
 }
