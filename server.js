@@ -4,6 +4,7 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 4000;
 
+app.use(express.bodyParser());
 app.engine('html', cons.hogan);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
@@ -13,7 +14,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/compare/', function(req, res) {
-  res.send("99%");
+  res.send(req.body.doc1);
 });
 
 var pub_dir = config.app.pub_dir;
