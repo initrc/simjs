@@ -9,14 +9,6 @@ app.engine('html', cons.hogan);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-app.get('/', function(req, res) {
-  res.render('index');
-});
-
-app.post('/compare/', function(req, res) {
-  res.send(req.body.doc1);
-});
-
 var pub_dir = config.app.pub_dir;
 if (pub_dir[0] != '/') {pub_dir = '/' + pub_dir;}
 var root_dir = require('path').dirname(module.filename);
@@ -24,3 +16,13 @@ pub_dir = root_dir + pub_dir;
 app.use(express.static(pub_dir));
 
 app.listen(config.app.port);
+
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
+app.post('/compare/', function(req, res) {
+  var sim = require(pub_dir + '/js/sim');
+  res.send(sim.compare(req.body.doc1, req.body.doc2));
+});
+
