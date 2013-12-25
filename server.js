@@ -22,5 +22,7 @@ app.get('/', function(req, res) {
 
 app.post('/compare/', function(req, res) {
   var sim = require(srcDir + 'sim');
-  res.send(sim.compare(req.body.doc1, req.body.doc2));
+  var result = sim.compare([req.body.doc1, req.body.doc2]);
+  result = (result * 100).toFixed(2) + "%";
+  res.send(result);
 });
