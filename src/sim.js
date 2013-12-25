@@ -5,16 +5,14 @@ module.exports = {
 var fs = require('fs'),
   stemmer = require('./stemmer');
 
-var file = require('path').dirname(module.filename) + '/english.stop';
-var stopWords = fs.readFileSync(file).toString().trim().split('\n');
-
 /*
  * Return a dict that maps filtered and stemmed word to id
  */
 function buildWordDict(docs, wordSets) {
   var wordDict = {},
     splitter = /[a-zA-Z-']+/g,
-    id = 0;
+    id = 0,
+    stopWords = fileToString('english.stop').split('\n');
   for (var i in docs) {
     var words = docs[i].match(splitter);
     for (var wi in words) {
@@ -95,3 +93,28 @@ function norm(vec) {
   }
   return Math.sqrt(sum);
 }
+
+/*
+ * read file and return string
+ */
+function fileToString(filename) {
+  var file = require('path').dirname(module.filename) + '/' + filename;
+  return fs.readFileSync(file).toString().trim();
+}
+
+/*
+ * local test
+ */
+function test() {
+  // accept 2 args as input files: node sim.js doc1 doc2
+  if (process.argv.length != 4) {
+    return;
+  }
+  console.log("Calculating similarity...");
+  var start = new Date().getTime();
+  var docs = [fileToString(process.argv[2]), fileToString(process.argv[3])];
+  var similarity = compare(docs);
+  var end = new Date().getTime();
+  console.log("Similarity = " + similarity + "\n" + (end - start) / 1000 + "s");
+}
+//test();
